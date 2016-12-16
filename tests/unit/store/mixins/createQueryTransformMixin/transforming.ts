@@ -68,16 +68,16 @@ registerSuite({
 		const { queryStore } = getStoreAndDfd(this, false);
 
 		const transformedView = queryStore.filter(
-			(item) => item.value >= 2
+			(item) => item.value <= 2
 		).transform(
 			(item) => ({ id: item.id, _value: item.value + 1 })
 		).filter(
-			(item) => item._value >= 4
+			(item) => item._value <= 4
 		).transform(
 			(item) => ({ id: item.id, __value: item._value + 1 })
 		);
-		transformedView.fetch().then(() => transformedView.get('item-3').then((data) => {
-			assert.deepEqual(data, { id: 'item-3', __value: 5 }, 'Didn\'t work with queries and transformations');
+		transformedView.fetch().then(() => transformedView.get('item-1').then((data) => {
+			assert.deepEqual(data, { id: 'item-1', __value: 3 }, 'Didn\'t work with queries and transformations');
 		}));
 	},
 
