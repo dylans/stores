@@ -76,7 +76,7 @@ registerSuite({
 		).transform(
 			(item) => ({ id: item.id, __value: item._value + 1 })
 		);
-		transformedView.fetch().then(() => transformedView.get('item-1').then((data) => {
+		return transformedView.fetch().then(() => transformedView.get('item-1').then((data) => {
 			assert.deepEqual(data, { id: 'item-1', __value: 3 }, 'Didn\'t work with queries and transformations');
 		}));
 	},
